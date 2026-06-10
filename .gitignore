@@ -1,0 +1,32 @@
+@'
+# Secrets — never commit these
+.env
+
+# Output files (may contain email content)
+output/
+*.xlsx
+*.xls
+
+# Processed message tracking (contains email IDs)
+processed_messages.json
+
+# Auth token cache
+token_cache.bin
+msal_token_cache.json
+*.token
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+'@ | Out-File -FilePath .gitignore -Encoding utf8

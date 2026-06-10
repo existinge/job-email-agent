@@ -1,0 +1,178 @@
+user:
+  your_name: Eve Williams
+  signature: |-
+    Best,
+    Eve Williams
+    linkedin.com/in/evewilliams-702a41281
+  follow_up_tone: warm, concise, professional, not pushy
+  job_search_focus: remote technical support, customer-facing IT, helpdesk, application support, part-time or autonomous support roles
+
+graph:
+  scopes:
+    - User.Read
+    - Mail.ReadWrite
+    - Mail.Send
+  tenant: consumers
+  page_size: 50
+
+scan:
+  days_back: 60
+  max_messages: 250
+  source: inbox
+  include_body_text: true
+  include_non_job_related_in_all_sheet: true
+
+processed:
+  enabled: true
+  file: processed_messages.json
+  skip_previously_processed: true
+  mark_as_processed_after_report: true
+
+ai:
+  enabled: true
+  provider: openrouter
+  model_env: OPENROUTER_MODEL
+  api_key_env: OPENROUTER_API_KEY
+  default_model: "openrouter/auto"
+  temperature: 0.15
+  max_body_chars: 4500
+  timeout_seconds: 90
+  retries: 3
+  use_cache: true
+  send_email_content_to_openrouter: true
+  fallback_to_rules_if_ai_fails: true
+  only_ai_for_job_likely_messages: false
+  min_ai_confidence_to_override_rules: 0.55
+
+folders:
+  root: Job Hunt
+  rejections: Rejections
+  job_board_spam: Job Board Spam
+  follow_up: Follow Up
+  important: Important
+
+automation:
+  auto_move_rejections: true
+  auto_move_job_board_spam: true
+  auto_move_follow_up: false
+  min_confidence_to_move: 0.72
+  never_delete_automatically: true
+
+follow_up:
+  application_receipt_wait_days: 7
+  recruiter_wait_days: 3
+  default_wait_days: 5
+  send_only_if_due: true
+  require_approval_yes: true
+
+classification:
+  job_board_domains:
+    - indeed.com
+    - ziprecruiter.com
+    - linkedin.com
+    - monster.com
+    - careerbuilder.com
+    - glassdoor.com
+    - dice.com
+    - hired.com
+    - talent.com
+    - simplyhired.com
+    - jooble.org
+    - lensa.com
+
+  spam_sender_phrases:
+    - job alert
+    - recommended jobs
+    - new jobs
+    - jobs you may like
+    - hiring now
+    - daily jobs
+    - weekly jobs
+    - similar jobs
+    - job recommendations
+    - remote jobs for you
+
+  rejection_phrases:
+    - unfortunately
+    - not selected
+    - not be moving forward
+    - not moving forward
+    - decided to move forward with other candidates
+    - pursue other candidates
+    - other candidates
+    - will not be proceeding
+    - no longer under consideration
+    - we are unable to offer
+    - we will not be advancing
+    - position has been filled
+    - after careful consideration
+    - regret to inform
+    - not the right fit
+    - not proceed
+
+  # Keep these specific. Do not add bare "assessment" or "next steps"; those appear in normal receipts.
+  important_action_phrases:
+    - select a time
+    - schedule an interview
+    - interview invitation
+    - invite you to interview
+    - availability for an interview
+    - calendar invite
+    - calendly
+    - book a time
+    - phone screen
+    - action required
+    - please complete
+    - complete this assessment
+    - complete the assessment
+    - take the assessment
+    - reply with your availability
+    - are you available
+    - we'd like to speak
+    - we would like to speak
+    - congratulations
+    - offer
+
+  application_receipt_phrases:
+    - thank you for applying
+    - thanks for applying
+    - we received your application
+    - application received
+    - your application has been received
+    - application submitted
+    - we have received your resume
+    - thank you for your interest
+    - your application is being reviewed
+    - we are reviewing your application
+    - our team will review your application
+    - if your qualifications match
+    - we will be in touch
+    - we’ll be in touch
+    - we'll be in touch
+    - thanks for your interest in
+    - application for the
+    - received your resume
+
+  job_relevant_phrases:
+    - application
+    - resume
+    - interview
+    - recruiter
+    - hiring
+    - talent acquisition
+    - candidate
+    - position
+    - role
+    - job
+    - employment
+    - workday
+    - greenhouse
+    - lever
+    - bamboohr
+    - icims
+    - ashby
+    - smartrecruiters
+    - workable
+
+  ignore_domains: []
+  trusted_human_domains: []
